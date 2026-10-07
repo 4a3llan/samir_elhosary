@@ -314,9 +314,13 @@ html[dir="ltr"] .hero-side-number {
         gap: 15px;
     }
 
-    .hero-image {
-        background-position: center;
-        opacity: .30;
+        .hero-image {
+        inset: 0;
+        background-image: url("../images/samir-hero-mobile.jpg");
+        background-position: center top;
+        opacity: .45;
+        animation: none;
+        transform: none;
     }
 
     .scroll-indicator {

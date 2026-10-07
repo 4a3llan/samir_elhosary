@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#090909">
+
+    <!-- Applies the saved language and enables the loader before first paint -->
+    <script>
+        (function () {
+            var html = document.documentElement, lang = "ar";
+            try { if (localStorage.getItem("samir_language") === "en") lang = "en"; } catch (e) {}
+            html.lang = lang;
+            html.dir = lang === "ar" ? "rtl" : "ltr";
+            html.classList.add("js", "is-loading");
+        })();
+    </script>
+
+    <!-- SEO -->
+    <title data-ar="المشروع | SAMIR EL-HOSARY" data-en="Project | SAMIR EL-HOSARY">المشروع | SAMIR EL-HOSARY</title>
+    <meta name="description" content="أنواع المشاريع التي يخرجها سمير الحصري: إعلانات، محتوى للعلامات التجارية، حملات ريلز وفيديو موسيقي." data-content-ar="أنواع المشاريع التي يخرجها سمير الحصري: إعلانات، محتوى للعلامات التجارية، حملات ريلز وفيديو موسيقي." data-content-en="Project types directed by Samir El-Hosary: commercials, branded content, reels campaigns and music videos.">
+    <meta name="author" content="Samir El-Hosary">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SAMIR EL-HOSARY">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:title" content="أعمال سمير الحصري | SAMIR EL-HOSARY">
+    <meta property="og:description" content="أنواع المشاريع التي يخرجها سمير الحصري: إعلانات، محتوى للعلامات التجارية، حملات ريلز وفيديو موسيقي.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Fonts & icons (Cairo is the only text font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400..900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preload" as="image" href="images/samir-hero.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/project.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         ACCESSIBILITY: skip link
+    ========================================= -->
+    <a href="#main" class="skip-link" data-ar="الانتقال إلى المحتوى" data-en="Skip to content">الانتقال إلى المحتوى</a>
+
+
+    <!-- =========================================
+         PAGE LOADER
+         Shown on first load, page navigation and language switch
+    ========================================= -->
+    <div class="page-loader" id="page-loader" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-brand">SAMIR EL-HOSARY</div>
+            <div class="loader-line"><span></span></div>
+            <div class="loader-text" data-ar="جاري التحميل..." data-en="LOADING...">جاري التحميل...</div>
+            <div class="loader-percent" id="loader-percent">0%</div>
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         CUSTOM CURSOR (desktop only)
+    ========================================= -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-follower" aria-hidden="true"></div>
+
+
+    <!-- =========================================
+         HEADER & NAVIGATION
+         Desktop navigation + mobile drawer menu
+    ========================================= -->
+    <header class="main-header enter" id="main-header">
+
+        <a href="index.html" class="logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">SAMIR EL-HOSARY</a>
+
+        <nav class="main-nav" id="main-nav" data-aria-label-ar="التنقل الرئيسي" data-aria-label-en="Main navigation" aria-label="التنقل الرئيسي">
+            <a href="index.html" class="nav-link"
+               data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="work.html" class="nav-link active" aria-current="page"
+               data-ar="الأعمال" data-en="Work">الأعمال</a>
+            <a href="about.html" class="nav-link"
+               data-ar="عني" data-en="About">عني</a>
+            <a href="contact.html" class="nav-link"
+               data-ar="تواصل" data-en="Contact">تواصل</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <button type="button" class="lang-switch" id="lang-switch" aria-label="Switch to English">EN</button>
+
+            <button type="button" class="menu-toggle" id="menu-toggle"
+                    aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
+
+    <main id="main">
+        <section class="pd-page">
+            <div class="container" id="project-root"></div>
+        </section>
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         Brand, quick links, social links and copyright
+    ========================================= -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">
+                        <span class="footer-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                    </a>
+
+                    <p class="footer-description"
+                       data-ar="مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة." data-en="Director and filmmaker creating visual work that brings together ideas, stories, and cinematic vision.">مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة.</p>
+                </div>
+
+                <!-- Quick links -->
+                <nav class="footer-navigation" data-aria-label-ar="روابط التذييل" data-aria-label-en="Footer navigation" aria-label="روابط التذييل">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul>
+                    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="work.html" data-ar="الأعمال" data-en="Work">الأعمال</a></li>
+                    <li><a href="about.html" data-ar="عني" data-en="About Me">عني</a></li>
+                    <li><a href="index.html#partners" data-ar="أهم العملاء" data-en="Clients">أهم العملاء</a></li>
+                    <li><a href="contact.html" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+                    </ul>
+                </nav>
+
+                  <!-- Social -->
+                <div class="footer-social">
+                    <h3 data-ar="تابعني" data-en="Follow Me">تابعني</h3>
+                    <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" class="footer-social-link" aria-label="Facebook"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" class="footer-social-link" aria-label="Instagram"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" class="footer-social-link" aria-label="YouTube"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@samir.films10?_r=1&_t=ZS-9AIWwJCJ9NN" class="footer-social-link" aria-label="TikTok"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <div class="footer-copyright">
+                    <span class="copyright-symbol">©</span>
+                    <span data-ar="جميع الحقوق محفوظة" data-en="All Rights Reserved">جميع الحقوق محفوظة</span>
+                    <span class="copyright-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                </div>
+
+                <div class="footer-developer">
+                    <span>Designed and programmed by :</span>
+                    <a href="https://www.facebook.com/hema.essam.20" target="_blank" rel="noopener noreferrer" class="developer-link">Eng. Ibrahim Essam Shaalan</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script defer src="js/core.js"></script>
+    <script defer src="js/projects-data.js"></script>
+    <script defer src="js/project.js"></script>
+
+</body>
+</html>

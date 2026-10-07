@@ -1,0 +1,1120 @@
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+    --black: #090909;
+    --dark: #101010;
+    --dark-2: #161616;
+    --dark-3: #1f1f1f;
+
+    --white: #F4F4F1;
+    --light: #E9E9E5;
+
+    --gray: #8F8F8F;
+    --gray-light: #b0b0b0;
+    --gray-dark: #3a3a3a;
+
+    --orange: #D55C03;
+    --orange-light: #F06A0A;
+    --orange-glow: rgba(213, 92, 3, .2);
+
+    --line: rgba(255, 255, 255, .11);
+
+    /* Single typeface for the whole website (Arabic + Latin) */
+    --font: "Cairo", sans-serif;
+
+    --ease: cubic-bezier(.16, 1, .3, 1);
+
+    /* +1 in LTR, -1 in RTL. Used to mirror horizontal motion. */
+    --dir-sign: 1;
+}
+
+html[dir="rtl"] {
+    --dir-sign: -1;
+}
+
+/* =========================================================
+   RESET & GLOBAL TYPOGRAPHY
+   Cairo is inherited by every element, including form controls.
+========================================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+::selection {
+    background: var(--orange);
+    color: #fff;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*
+   Arabic is a connected script: letter-spacing breaks the joins.
+   Any translatable text is therefore un-spaced while Arabic is active.
+*/
+html[lang="ar"] [data-ar] {
+    letter-spacing: normal;
+}
+
+/* =========================================================
+   ACCESSIBILITY HELPERS
+========================================================= */
+
+:focus-visible {
+    outline: 2px solid var(--orange-light);
+    outline-offset: 3px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.skip-link {
+    position: fixed;
+    top: 12px;
+    inset-inline-start: 12px;
+    z-index: 100001;
+    padding: 10px 18px;
+    border-radius: 4px;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 800;
+    transform: translateY(-200%);
+    transition: transform .25s var(--ease);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   PAGE LOADER
+   Controlled by classes on <html>:
+   - .is-loading  -> loader visible
+   The progress bar is driven by --p (0 to 1) set from JavaScript.
+========================================================= */
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--black);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility 0s linear .35s;
+}
+
+html.is-loading .page-loader {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .18s ease, visibility 0s;
+}
+
+.page-loader::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: .06;
+    filter: blur(100px);
+}
+
+.loader-content {
+    position: relative;
+    z-index: 2;
+    width: min(400px, 80%);
+    text-align: center;
+}
+
+.loader-brand {
+    margin-bottom: 25px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.loader-line {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+    background: var(--dark-3);
+}
+
+.loader-line span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--orange);
+    transform: scaleX(var(--p, 0));
+    transform-origin: left center;
+}
+
+html[dir="rtl"] .loader-line span {
+    transform-origin: right center;
+}
+
+.loader-text {
+    margin-top: 18px;
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.loader-percent {
+    margin-top: 7px;
+    color: var(--orange);
+    font-size: 11px;
+    letter-spacing: 2px;
+    direction: ltr;
+}
+
+/* =========================================================
+   MOTION SYSTEM
+   .enter  -> plays once when the page becomes ready (above the fold)
+   .reveal -> plays once when scrolled into view
+   Elements are hidden only when JavaScript is running (html.js),
+   so the content is never lost if scripts fail.
+========================================================= */
+
+@keyframes enterUp {
+    from {
+        opacity: 0;
+        translate: 0 26px;
+    }
+}
+
+html.js:not(.is-ready) .enter,
+html.js .reveal:not(.is-visible) {
+    opacity: 0;
+}
+
+html.js.is-ready .enter {
+    animation: enterUp .8s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+html.js .reveal.is-visible {
+    animation: enterUp .85s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+   Fine pointers only. Positioned from JavaScript.
+========================================================= */
+
+.custom-cursor,
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99998;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform;
+    transition: opacity .3s ease;
+}
+
+.custom-cursor {
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+}
+
+.custom-cursor-follower {
+    z-index: 99997;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(213, 92, 3, .7);
+    transition:
+        opacity .3s ease,
+        width .35s var(--ease),
+        height .35s var(--ease),
+        background .35s var(--ease),
+        border-color .35s var(--ease);
+}
+
+.custom-cursor.is-active,
+.custom-cursor-follower.is-active {
+    opacity: 1;
+}
+
+.custom-cursor-follower.hovered {
+    width: 70px;
+    height: 70px;
+    background: rgba(213, 92, 3, .10);
+    border-color: var(--orange);
+}
+
+@media (hover: none), (max-width: 1024px) {
+
+    .custom-cursor,
+    .custom-cursor-follower {
+        display: none;
+    }
+}
+
+/* =========================================================
+   HEADER
+   Fixed top bar shared by all pages.
+========================================================= */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px 60px;
+    border-bottom: 1px solid transparent;
+    transition:
+        padding .5s var(--ease),
+        background .5s var(--ease),
+        border-color .5s var(--ease);
+}
+
+.main-header.scrolled {
+    padding-block: 16px;
+    border-bottom-color: rgba(255, 255, 255, .06);
+}
+
+/*
+   The glass effect lives on a pseudo-element, NOT on the header itself.
+   A backdrop-filter on the header would turn it into the containing block
+   of the fixed mobile drawer and shrink the drawer to the header's height.
+*/
+.main-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(9, 9, 9, .82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s var(--ease);
+}
+
+.main-header.scrolled::before {
+    opacity: 1;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: color .3s ease;
+}
+
+.logo:hover {
+    color: var(--orange);
+}
+
+/* =========================================================
+   NAVIGATION (desktop)
+========================================================= */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-link {
+    position: relative;
+    padding: 5px 0;
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 600;
+    transition: color .3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange);
+    transition: width .4s var(--ease);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--white);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* =========================================================
+   HEADER ACTIONS: language switch + mobile menu button
+========================================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lang-switch {
+    min-width: 62px;
+    padding: 8px 16px;
+    border: 1px solid var(--gray-dark);
+    border-radius: 30px;
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+.lang-switch:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: translateY(-2px);
+}
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .10);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .03);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    transition:
+        background .3s ease,
+        border-color .3s ease;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 17px;
+    height: 1.5px;
+    background: var(--white);
+    transition:
+        transform .35s var(--ease),
+        opacity .25s ease;
+}
+
+.menu-toggle:hover {
+    border-color: var(--orange);
+    background: rgba(213, 92, 3, .10);
+}
+
+.menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.mobile-menu-backdrop {
+    display: none;
+}
+
+/* =========================================================
+   MOBILE NAVIGATION (drawer)
+   The drawer slides in from the inline-start side, so it works
+   for both RTL (right) and LTR (left).
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .main-header {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .logo {
+        flex: 1 1 auto;
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
+        gap: 8px;
+    }
+
+    .lang-switch {
+        min-width: 50px;
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        inset-inline-start: 0;
+        z-index: 1100;
+        width: min(82vw, 330px);
+        padding: 105px 30px 35px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+        background: linear-gradient(180deg, rgba(16, 16, 16, .98), rgba(9, 9, 9, .99));
+        border-inline-end: 1px solid rgba(255, 255, 255, .07);
+        box-shadow: calc(30px * var(--dir-sign)) 0 80px rgba(0, 0, 0, .45);
+        transform: translateX(calc(-105% * var(--dir-sign)));
+        visibility: hidden;
+        opacity: 0;
+        transition:
+            transform .5s var(--ease),
+            opacity .3s ease,
+            visibility 0s linear .5s;
+    }
+
+    .main-nav.is-open {
+        transform: translateX(0);
+        visibility: visible;
+        opacity: 1;
+        transition:
+            transform .5s var(--ease),
+            opacity .3s ease,
+            visibility 0s;
+    }
+
+    .main-nav .nav-link {
+        width: 100%;
+        padding: 15px 0;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .main-nav .nav-link::after {
+        bottom: 4px;
+    }
+
+    .main-nav .nav-link:hover::after,
+    .main-nav .nav-link.active::after {
+        width: 55px;
+    }
+
+    .mobile-menu-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 900; /* below .main-header (1000), which contains the drawer */
+        display: block;
+        background: rgba(0, 0, 0, .58);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .35s ease, visibility .35s ease;
+    }
+
+    .mobile-menu-backdrop.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main-header {
+        padding: 14px 15px;
+    }
+
+    .logo {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .lang-switch {
+        min-width: 48px;
+        padding: 7px 9px;
+        font-size: 10px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* =========================================================
+   LAYOUT HELPERS (used by inner pages)
+========================================================= */
+
+.container {
+    width: min(1240px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-space {
+    padding: clamp(90px, 11vw, 160px) 0;
+}
+
+.section-kicker {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+    color: var(--orange-light);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: .2em;
+}
+
+.section-kicker.justify-center {
+    justify-content: center;
+}
+
+.kicker-line {
+    flex-shrink: 0;
+    width: 36px;
+    height: 2px;
+    background: var(--orange);
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: min(100% - 32px, 1240px);
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    html.js:not(.is-ready) .enter,
+    html.js .reveal:not(.is-visible) {
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   BUTTONS
+   Primary / secondary call-to-action buttons
+========================================================= */
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 35px;
+}
+.btn {
+    min-width: 170px;
+    min-height: 52px;
+    padding: 13px 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    transition:
+        transform .35s var(--ease),
+        background .35s var(--ease),
+        border-color .35s var(--ease),
+        box-shadow .35s var(--ease);
+}
+.btn i {
+    transition: transform .35s var(--ease);
+}
+.btn-primary {
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background: var(--orange-light);
+    border-color: var(--orange-light);
+    transform: translateY(-4px);
+    box-shadow:
+        0 15px 40px rgba(213,92,3,.20);
+}
+.btn-primary:hover i {
+    transform: translateX(calc(5px * var(--dir-sign)));
+}
+.btn-secondary {
+    background: rgba(255,255,255,.02);
+    border: 1px solid var(--gray-dark);
+    color: var(--white);
+}
+.btn-secondary:hover {
+    background: rgba(255,255,255,.07);
+    border-color: var(--white);
+    transform: translateY(-4px);
+}
+/* =========================================================
+   BUTTON ICONS
+========================================================= */
+.btn i {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.btn-secondary i {
+    color: var(--orange);
+}
+/* =========================================
+   FOOTER
+========================================= */
+.site-footer {
+    position: relative;
+    width: 100%;
+    background:
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #050505 100%
+        );
+    color: #fff;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+/* =========================================
+   DECORATIVE LIGHT
+========================================= */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    width: 600px;
+    height: 300px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,0.06),
+            transparent 70%
+        );
+    pointer-events: none;
+}
+/* =========================================
+   FOOTER CONTAINER
+========================================= */
+.footer-container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+/* =========================================
+   MAIN FOOTER
+========================================= */
+.footer-main {
+    display: grid;
+    grid-template-columns:
+        minmax(280px, 1.6fr)
+        minmax(180px, 0.8fr)
+        minmax(220px, 1fr);
+    gap: 70px;
+    padding:
+        80px
+        0
+        65px;
+}
+/* =========================================
+   BRAND
+========================================= */
+.footer-logo {
+    display: inline-flex;
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.footer-name {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0;
+}/* English initially hidden */
+
+/* =========================================
+   FOOTER DESCRIPTION
+========================================= */
+.footer-description {
+    max-width: 450px;
+    margin: 0;
+    color:
+        rgba(255,255,255,0.58);
+    font-size: 14px;
+    line-height: 2;
+}
+/* =========================================
+   FOOTER HEADINGS
+========================================= */
+.footer-navigation h3,
+.footer-social h3 {
+    margin:
+        5px
+        0
+        22px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+}
+/* =========================================
+   NAVIGATION
+========================================= */
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+.footer-navigation a {
+    display: inline-block;
+    color:
+        rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 14px;
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+.footer-navigation a:hover {
+    color: #fff;
+    transform: translateX(calc(4px * var(--dir-sign)));
+}
+/* =========================================
+   SOCIAL MEDIA
+========================================= */
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.footer-social-link {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color:
+        rgba(255,255,255,0.72);
+    background:
+        rgba(255,255,255,0.055);
+    border:
+        1px solid rgba(255,255,255,0.10);
+    text-decoration: none;
+    font-size: 16px;
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+.footer-social-link:hover {
+    color: #fff;
+    background:
+        rgba(255,255,255,0.12);
+    border-color:
+        rgba(255,255,255,0.25);
+    transform:
+        translateY(-4px);
+}
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+.footer-bottom {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+    color:
+        rgba(255,255,255,0.48);
+    font-size: 12px;
+}
+/* =========================================
+   COPYRIGHT
+========================================= */
+.footer-copyright {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+.copyright-symbol {
+    font-size: 15px;
+    color:
+        rgba(255,255,255,0.75);
+}
+.copyright-name {
+    color:
+        rgba(255,255,255,0.75);
+    font-weight: 700;
+}
+/* =========================================
+   DEVELOPER
+========================================= */
+.footer-developer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 5px;
+    direction: ltr;
+}
+.developer-link {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        color 0.25s ease,
+        opacity 0.25s ease;
+}
+.developer-link:hover {
+    opacity: 0.65;
+    text-decoration:
+        underline;
+}
+/* =========================================
+   TABLET
+========================================= */
+@media (max-width: 900px) {
+    .footer-main {
+        grid-template-columns:
+            1fr 1fr;
+        gap: 45px;
+        padding:
+            65px
+            0
+            50px;
+    }
+    .footer-brand {
+        grid-column:
+            1 / -1;
+    }
+    .footer-description {
+        max-width: 650px;
+    }
+    .footer-bottom {
+        padding:
+            20px 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .footer-developer {
+        justify-content: center;
+    }
+}
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 600px) {
+    .footer-container {
+        width:
+            min(
+                100% - 30px,
+                500px
+            );
+    }
+    .footer-main {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding:
+            55px
+            0
+            45px;
+    }
+    .footer-brand {
+        text-align: center;
+    }
+    .footer-logo {
+        justify-content: center;
+    }
+    .footer-name {
+        font-size: 27px;
+    }
+    .footer-description {
+        margin:
+            0 auto;
+        font-size: 13px;
+        line-height: 1.9;
+    }
+    .footer-navigation,
+    .footer-social {
+        text-align: center;
+    }
+    .footer-navigation ul {
+        align-items: center;
+    }
+    .footer-navigation a:hover {
+        transform: none;
+    }
+    .footer-social-links {
+        justify-content: center;
+    }
+    .footer-bottom {
+        gap: 15px;
+        padding:
+            22px 0;
+        line-height: 1.8;
+    }
+    .footer-copyright,
+    .footer-developer {
+        justify-content: center;
+        text-align: center;
+    }
+}
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+@media (max-width: 380px) {
+    .footer-name {
+        font-size: 24px;
+    }
+    .footer-description {
+        font-size: 12px;
+    }
+    .footer-social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+/* Latin brand name gets a little tracking */
+html[lang="en"] .footer-name {
+    letter-spacing: 1px;
+}

@@ -1,0 +1,297 @@
+
+/* =========================================================
+   WORK HERO
+   Page introduction
+========================================================= */
+
+.work-hero {
+    position: relative;
+    padding: 170px 0 80px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(213, 92, 3, .14), transparent 34%),
+        linear-gradient(180deg, #080808 0%, #0b0b0b 100%);
+    border-bottom: 1px solid var(--line);
+}
+
+.work-hero h1 {
+    margin-bottom: 22px;
+    font-size: clamp(42px, 7vw, 82px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+
+.work-hero h1 em {
+    display: block;
+    color: var(--orange-light);
+    font-style: normal;
+}
+
+.work-hero p {
+    max-width: 680px;
+    color: var(--gray-light);
+    font-size: clamp(14px, 1.5vw, 17px);
+    line-height: 2;
+}
+
+.work-number {
+    position: absolute;
+    bottom: -35px;
+    inset-inline-end: 24px;
+    color: rgba(255, 255, 255, .025);
+    font-size: clamp(100px, 16vw, 220px);
+    font-weight: 900;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FEATURED FILM
+   Poster that turns into the YouTube player on click
+========================================================= */
+
+.featured-film {
+    padding: 90px 0 40px;
+}
+
+.film-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #000;
+    box-shadow: 0 35px 100px rgba(0, 0, 0, .45);
+}
+
+.film-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.film-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    padding: clamp(18px, 3vw, 36px);
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, .1) 30%, rgba(0, 0, 0, .85) 100%),
+        url("../images/samir-hero.jpg") center / cover no-repeat;
+    text-align: start;
+}
+
+.film-poster-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.film-poster-label small {
+    color: var(--orange-light);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.film-poster-label strong {
+    font-size: clamp(20px, 3vw, 34px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.film-play {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--orange);
+    color: #fff;
+    font-size: 22px;
+    box-shadow: 0 15px 40px rgba(213, 92, 3, .35);
+    transition: transform .35s var(--ease), background .35s var(--ease);
+}
+
+.film-play i {
+    transform: translateX(calc(2px * var(--dir-sign) * -1));
+}
+
+.film-poster:hover .film-play {
+    background: var(--orange-light);
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   SERVICES GRID
+   Project types that link to the contact form
+========================================================= */
+
+.services-section {
+    padding-top: 60px;
+}
+
+.services-heading {
+    max-width: 780px;
+    margin-bottom: 56px;
+}
+
+.services-heading h2 {
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid var(--line);
+    background: var(--line);
+}
+
+.service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    padding: 34px 32px 38px;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .008)), var(--black);
+    transition: background .45s ease, transform .45s var(--ease);
+}
+
+.service-card::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .5s var(--ease);
+}
+
+html[dir="rtl"] .service-card::after {
+    transform-origin: right center;
+}
+
+.service-card:hover,
+.service-card:focus-visible {
+    z-index: 2;
+    background: radial-gradient(circle at 70% 15%, rgba(213, 92, 3, .10), transparent 30%), var(--dark-2);
+    transform: translateY(-5px);
+}
+
+.service-card:hover::after,
+.service-card:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.service-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 36px;
+    border: 1px solid rgba(213, 92, 3, .28);
+    background: rgba(213, 92, 3, .05);
+    color: var(--orange-light);
+    font-size: 15px;
+}
+
+.service-card h3 {
+    margin-bottom: 14px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.service-card p {
+    max-width: 440px;
+    margin-bottom: 26px;
+    color: rgba(244, 244, 241, .54);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.service-link i {
+    color: var(--orange-light);
+    transition: transform .35s var(--ease);
+}
+
+.service-card:hover .service-link i {
+    transform: translateX(calc(6px * var(--dir-sign)));
+}
+
+
+/* =========================================================
+   CLOSING CTA
+========================================================= */
+
+.work-cta {
+    padding: 100px 0 120px;
+    text-align: center;
+}
+
+.work-cta h2 {
+    max-width: 800px;
+    margin: 0 auto 32px;
+    font-size: clamp(28px, 5vw, 55px);
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .work-hero {
+        padding: 130px 0 60px;
+    }
+
+    .featured-film {
+        padding-top: 60px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        min-height: 240px;
+        padding: 28px 24px 32px;
+    }
+
+    .film-play {
+        width: 56px;
+        height: 56px;
+        font-size: 18px;
+    }
+}

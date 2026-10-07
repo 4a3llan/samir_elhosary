@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#090909">
+
+    <!-- Applies the saved language and enables the loader before first paint -->
+    <script>
+        (function () {
+            var html = document.documentElement, lang = "ar";
+            try { if (localStorage.getItem("samir_language") === "en") lang = "en"; } catch (e) {}
+            html.lang = lang;
+            html.dir = lang === "ar" ? "rtl" : "ltr";
+            html.classList.add("js", "is-loading");
+        })();
+    </script>
+
+    <!-- SEO -->
+    <title data-ar="سمير الحصري | مخرج وصانع أفلام وإعلانات سينمائية" data-en="SAMIR EL-HOSARY | Director &amp; Filmmaker">سمير الحصري | مخرج وصانع أفلام وإعلانات سينمائية</title>
+    <meta name="description" content="الموقع الشخصي للمخرج وصانع الأفلام سمير الحصري؛ متخصص في إخراج الإعلانات التجارية، الأفلام الوثائقية والقصيرة، والمحتوى البصري بأسلوب سينمائي." data-content-ar="الموقع الشخصي للمخرج وصانع الأفلام سمير الحصري؛ متخصص في إخراج الإعلانات التجارية، الأفلام الوثائقية والقصيرة، والمحتوى البصري بأسلوب سينمائي." data-content-en="Personal website of director and filmmaker Samir El-Hosary, specialising in commercials, documentaries, short films and cinematic visual content.">
+    <meta name="author" content="Samir El-Hosary">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SAMIR EL-HOSARY">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:title" content="سمير الحصري | مخرج وصانع أفلام وإعلانات سينمائية">
+    <meta property="og:description" content="الموقع الشخصي للمخرج وصانع الأفلام سمير الحصري؛ متخصص في إخراج الإعلانات التجارية، الأفلام الوثائقية والقصيرة، والمحتوى البصري بأسلوب سينمائي.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Fonts & icons (Cairo is the only text font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400..900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preload" as="image" href="images/samir-hero.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/projects.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         ACCESSIBILITY: skip link
+    ========================================= -->
+    <a href="#main" class="skip-link" data-ar="الانتقال إلى المحتوى" data-en="Skip to content">الانتقال إلى المحتوى</a>
+
+
+    <!-- =========================================
+         PAGE LOADER
+         Shown on first load, page navigation and language switch
+    ========================================= -->
+    <div class="page-loader" id="page-loader" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-brand">SAMIR EL-HOSARY</div>
+            <div class="loader-line"><span></span></div>
+            <div class="loader-text" data-ar="جاري التحميل..." data-en="LOADING...">جاري التحميل...</div>
+            <div class="loader-percent" id="loader-percent">0%</div>
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         CUSTOM CURSOR (desktop only)
+    ========================================= -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-follower" aria-hidden="true"></div>
+
+
+    <!-- =========================================
+         HEADER & NAVIGATION
+         Desktop navigation + mobile drawer menu
+    ========================================= -->
+    <header class="main-header enter" id="main-header">
+
+        <a href="index.html" class="logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">SAMIR EL-HOSARY</a>
+
+        <nav class="main-nav" id="main-nav" data-aria-label-ar="التنقل الرئيسي" data-aria-label-en="Main navigation" aria-label="التنقل الرئيسي">
+            <a href="index.html" class="nav-link active" aria-current="page"
+               data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="work.html" class="nav-link"
+               data-ar="الأعمال" data-en="Work">الأعمال</a>
+            <a href="about.html" class="nav-link"
+               data-ar="عني" data-en="About">عني</a>
+            <a href="contact.html" class="nav-link"
+               data-ar="تواصل" data-en="Contact">تواصل</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <button type="button" class="lang-switch" id="lang-switch" aria-label="Switch to English">EN</button>
+
+            <button type="button" class="menu-toggle" id="menu-toggle"
+                    aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
+
+    <main id="main">
+
+        <!-- =========================================
+             HERO SECTION
+             Main landing section introducing the website
+        ========================================= -->
+        <section class="hero-section" id="home">
+
+            <div class="hero-background" aria-hidden="true">
+                <div class="hero-image"></div>
+                <div class="hero-overlay"></div>
+                <div class="hero-light"></div>
+                <div class="hero-grain"></div>
+            </div>
+
+            <div class="hero-content">
+
+                <div class="hero-kicker enter" style="--i:1" data-ar="مخرج وصانع أفلام" data-en="DIRECTOR &amp; FILMMAKER">مخرج وصانع أفلام</div>
+
+                <h1 class="hero-title enter" style="--i:2">
+                    <span class="hero-title-line" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                </h1>
+
+                <p class="hero-description enter" style="--i:3"
+                   data-ar="أصنع قصصًا بصرية وإعلانات وأفلامًا للعلامات التجارية، أحوّل فيها الأفكار إلى صور تبقى في الذاكرة." data-en="I create visual stories, commercials and branded films that turn ideas into images people remember.">أصنع قصصًا بصرية وإعلانات وأفلامًا للعلامات التجارية، أحوّل فيها الأفكار إلى صور تبقى في الذاكرة.</p>
+
+                <div class="hero-actions enter" style="--i:4">
+                    <a href="work.html" class="btn btn-primary">
+                        <span data-ar="شاهد الأعمال" data-en="VIEW WORK">شاهد الأعمال</span>
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <span data-ar="تواصل معي" data-en="CONTACT ME">تواصل معي</span>
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <div class="hero-socials enter" style="--i:5">
+                    <a href="https://www.tiktok.com/@samir.films10?_r=1&_t=ZS-9AIWwJCJ9NN" target="_blank" rel="noopener noreferrer" class="social-link"
+                       aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" target="_blank" rel="noopener noreferrer" class="social-link"
+                       aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" target="_blank" rel="noopener noreferrer" class="social-link"
+                       aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link"
+                       aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                </div>
+
+            </div>
+
+            <a href="#cinematic-video" class="scroll-indicator enter" style="--i:6">
+                <span data-ar="اسحب للأسفل" data-en="SCROLL DOWN">اسحب للأسفل</span>
+                <div class="scroll-arrow"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+            </a>
+
+            <div class="hero-side-number enter" style="--i:6" aria-hidden="true">01</div>
+            <div class="hero-side-line enter" style="--i:6" aria-hidden="true"></div>
+
+        </section>
+
+
+        <!-- =========================================
+             CINEMATIC VIDEO SECTION
+             Muted, looping YouTube background (autoplay requires mute)
+        ========================================= -->
+   
+        <section class="cinematic-video-section" id="cinematic-video">
+
+            <h2 class="visually-hidden" data-ar="فيلم سينمائي" data-en="Cinematic film">فيلم سينمائي</h2>
+
+                <div class="cinematic-video-frame">
+                    <iframe
+                        src="https://www.youtube.com/embed/-J53PBwNoFw?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;controls=1"
+                        data-title-ar="فيديو سينمائي لسمير الحصري" data-title-en="Cinematic video by Samir El-Hosary" title="فيديو سينمائي لسمير الحصري"
+                                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+
+        </section>
+
+        <!-- =========================================
+             MY WORK SECTION
+             Category tabs + project cards (see js/projects.js)
+        ========================================= -->
+        <section class="projects-section" id="projects" data-projects data-limit="3" data-more="work.html">
+            <div class="container">
+                <div class="projects-heading reveal">
+                    <div class="section-kicker">
+                        <span class="kicker-line" aria-hidden="true"></span>
+                        <span data-ar="أعمالي" data-en="MY WORK">أعمالي</span>
+                    </div>
+                    <h2 data-html data-ar="مشاريع حقيقية &lt;span&gt;من أعمالي&lt;/span&gt;" data-en="Real projects &lt;span&gt;from my work&lt;/span&gt;">مشاريع حقيقية <span>من أعمالي</span></h2>
+                </div>
+                <div class="proj-tabs" role="tablist" data-aria-label-ar="تصنيفات الأعمال" data-aria-label-en="Work categories" aria-label="تصنيفات الأعمال"></div>
+                <div class="proj-grid" aria-live="polite"></div>
+                <div class="proj-more">
+                    <a href="work.html" class="btn btn-secondary">
+                        <span data-ar="شاهد المزيد" data-en="VIEW MORE">شاهد المزيد</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             PARTNERS & CLIENTS SECTION
+             Brands strip and clients carousel
+        ========================================= -->
+        <section class="partners-section" id="partners">
+
+            <div class="partners-bg-glow partners-bg-glow-1" aria-hidden="true"></div>
+            <div class="partners-bg-glow partners-bg-glow-2" aria-hidden="true"></div>
+
+            <div class="partners-container">
+
+                <div class="partners-heading reveal">
+                    <span class="partners-eyebrow" data-ar="شركاء النجاح" data-en="TRUSTED PARTNERS">شركاء النجاح</span>
+
+                    <h2 class="partners-title"
+                        data-ar="علامات وعملاء &lt;span&gt;يثقون بنا&lt;/span&gt;" data-en="Brands &amp; Clients &lt;span&gt;that trust us&lt;/span&gt;" data-html>علامات وعملاء<span>يثقون بنا</span></h2>
+
+                    <p class="partners-description"
+                       data-ar="نتعاون مع علامات تجارية وعملاء محترفين لصناعة محتوى بصري يترك أثرًا." data-en="We collaborate with brands and professionals to create visual content that leaves an impact.">نتعاون مع علامات تجارية وعملاء محترفين لصناعة محتوى بصري يترك أثرًا.</p>
+                </div>
+
+                <!-- Brands strip -->
+                <div class="partners-brands-slider">
+
+                    <div class="brands-slider-header">
+                        <span data-ar="علامات وعملاء محترفين لدينا" data-en="Brands &amp; Professional Clients">علامات وعملاء محترفين لدينا</span>
+                    </div>
+
+                    <div class="brands-slider-wrapper" aria-hidden="true">
+                        <div class="swiper brands-swiper" dir="ltr">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/belte.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/albassyouni.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/bitasam.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/izen.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/newgan.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/aleasima.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/alqadiriu.midikal.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/altahawi.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/elarabiya.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/dentora.png" alt="" width="260" height="78" decoding="async"></div></div>
+                                <div class="swiper-slide"><div class="brand-slide-item"><img src="images/logos/elhosery.png" alt="" width="260" height="78" decoding="async"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clients carousel -->
+                <div class="clients-heading reveal">
+
+                    <div>
+                        <span class="clients-label" data-ar="عملاؤنا" data-en="OUR CLIENTS">عملاؤنا</span>
+                        <h3 data-ar="أشخاص نفتخر بالعمل معهم" data-en="Professionals we are proud to work with">أشخاص نفتخر بالعمل معهم</h3>
+                    </div>
+
+                    <div class="clients-navigation">
+                        <button class="clients-nav-btn clients-prev" type="button" data-aria-label-ar="العميل السابق" data-aria-label-en="Previous client" aria-label="العميل السابق">
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                        <button class="clients-nav-btn clients-next" type="button" data-aria-label-ar="العميل التالي" data-aria-label-en="Next client" aria-label="العميل التالي">
+                            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="swiper clients-swiper reveal">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Dr_Osama Al_Shafei.jpg" alt="Dr. Osama El-Shafey"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="د. أسامة الشافعي" data-en="Dr. Osama El-Shafey">د. أسامة الشافعي</h4>
+                                <p data-ar="طبيب وجراح أسنان" data-en="Dentist &amp; Dental Surgeon">طبيب وجراح أسنان</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Dr_Tarek_Ziad.jpg" alt="Dr. Tarek Ziad"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="د. طارق زياد" data-en="Dr. Tarek Ziad">د. طارق زياد</h4>
+                                <p data-ar="طبيب وجراح أسنان" data-en="Dentist &amp; Dental Surgeon">طبيب وجراح أسنان</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                       <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Dr_Moamen_Tolba.jpg" alt="Dr. Moamen Tolba"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="د. مؤمن طلبة" data-en="Dr. Moamen Tolba">د. مؤمن طلبة</h4>
+                                <p data-ar="طبيب وجراح أسنان" data-en="Dentist &amp; Dental Surgeon">طبيب وجراح أسنان</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Dr_Alaa_Shehata.jpg" alt="Dr. Alaa Shehata"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="د. علاء شحات" data-en="Dr. Alaa Shehata">د. علاء شحات</h4>
+                                <p data-ar="استشاري النساء والتوليد" data-en="Obstetrics &amp; Gynecology Consultant">استشاري النساء والتوليد</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Mr_Mohamed_Ammar.jpg" alt="Mr. Mohamed Ammar"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="أ. محمد عمار" data-en="Mr. Mohamed Ammar">أ. محمد عمار</h4>
+                                <p data-ar="معلم رياضيات" data-en="Mathematics Teacher">معلم رياضيات</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Mr_Mostafa_ElBashlawy.jpg" alt="Mr. Mostafa El-Beshlawy"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="أ. مصطفى البشلاوي" data-en="Mr. Mostafa El-Beshlawy">أ. مصطفى البشلاوي</h4>
+                                <p data-ar="معلم تاريخ" data-en="History Teacher">معلم تاريخ</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                       <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Eng_Ahmed_AlHuwaiti.jpg" alt="Eng. Ahmed Elhoweity"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="م. أحمد الحويطي" data-en="Eng. Ahmed Elhoweity">م. أحمد الحويطي</h4>
+                                <p data-ar="مدير الشركة العربية الهندسية" data-en="Manager of Arab Engineering Company">مدير الشركة العربية الهندسية</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+
+                    <div class="swiper-slide">
+                        <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Mr_Mohamed_Hassan.jpg" alt="Mr. Mohamed Hassan"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="أ. محمد حسن" data-en="Mr. Mohamed Hassan">أ. محمد حسن</h4>
+                                <p data-ar="محاسب" data-en="Accountant">محاسب</p>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                       <article class="client-card">
+                            <div class="client-image-wrap">
+                                <img src="images/customers/Captain_Alaa_Jihad.jpg" alt="Captain Alaa Gihad"
+                                    width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                                <div class="client-image-overlay"></div>
+                            </div>
+                            <div class="client-info">
+                                <h4 data-ar="كابتن علاء جهاد" data-en="Captain Alaa Gihad">كابتن علاء جهاد</h4>
+                                <p data-ar="مدرب MMA وفنون قتالية" data-en="MMA &amp; Martial Arts Coach">مدرب MMA وفنون قتالية</p>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="partners-bottom reveal" aria-hidden="true">
+                    <span></span>
+                    <div data-ar="شراكات تُصنع بعناية" data-en="Partnerships crafted with purpose">شراكات تُصنع بعناية</div>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         Brand, quick links, social links and copyright
+    ========================================= -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">
+                        <span class="footer-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                    </a>
+
+                    <p class="footer-description"
+                       data-ar="مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة." data-en="Director and filmmaker creating visual work that brings together ideas, stories, and cinematic vision.">مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة.</p>
+                </div>
+
+                <!-- Quick links -->
+                <nav class="footer-navigation" data-aria-label-ar="روابط التذييل" data-aria-label-en="Footer navigation" aria-label="روابط التذييل">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul>
+                    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="work.html" data-ar="الأعمال" data-en="Work">الأعمال</a></li>
+                    <li><a href="about.html" data-ar="عني" data-en="About Me">عني</a></li>
+                    <li><a href="index.html#partners" data-ar="أهم العملاء" data-en="Clients">أهم العملاء</a></li>
+                    <li><a href="contact.html" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Social -->
+                <div class="footer-social">
+                    <h3 data-ar="تابعني" data-en="Follow Me">تابعني</h3>
+                    <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" class="footer-social-link" aria-label="Facebook"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" class="footer-social-link" aria-label="Instagram"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" class="footer-social-link" aria-label="YouTube"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@samir.films10?_r=1&_t=ZS-9AIWwJCJ9NN" class="footer-social-link" aria-label="TikTok"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <div class="footer-copyright">
+                    <span class="copyright-symbol">©</span>
+                    <span data-ar="جميع الحقوق محفوظة" data-en="All Rights Reserved">جميع الحقوق محفوظة</span>
+                    <span class="copyright-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                </div>
+
+                <div class="footer-developer">
+                    <span>Designed and programmed by :</span>
+                    <a href="https://www.facebook.com/hema.essam.20" target="_blank" rel="noopener noreferrer" class="developer-link">Eng. Ibrahim Essam Shaalan</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="js/core.js"></script>
+    <script defer src="js/projects-data.js"></script>
+    <script defer src="js/projects.js"></script>
+    <script defer src="js/home.js"></script>
+
+</body>
+</html>

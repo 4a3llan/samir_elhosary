@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#090909">
+
+    <!-- Applies the saved language and enables the loader before first paint -->
+    <script>
+        (function () {
+            var html = document.documentElement, lang = "ar";
+            try { if (localStorage.getItem("samir_language") === "en") lang = "en"; } catch (e) {}
+            html.lang = lang;
+            html.dir = lang === "ar" ? "rtl" : "ltr";
+            html.classList.add("js", "is-loading");
+        })();
+    </script>
+
+    <!-- SEO -->
+    <title data-ar="تواصل مع سمير الحصري | SAMIR EL-HOSARY" data-en="Contact Samir El-Hosary | SAMIR EL-HOSARY">تواصل مع سمير الحصري | SAMIR EL-HOSARY</title>
+    <meta name="description" content="تواصل مع المخرج سمير الحصري لإعلانات، أفلام للعلامات التجارية، ريلز وإنتاجات إبداعية." data-content-ar="تواصل مع المخرج سمير الحصري لإعلانات، أفلام للعلامات التجارية، ريلز وإنتاجات إبداعية." data-content-en="Contact director Samir El-Hosary for commercials, branded films, reels and creative productions.">
+    <meta name="author" content="Samir El-Hosary">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SAMIR EL-HOSARY">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:title" content="تواصل مع سمير الحصري | SAMIR EL-HOSARY">
+    <meta property="og:description" content="تواصل مع المخرج سمير الحصري لإعلانات، أفلام للعلامات التجارية، ريلز وإنتاجات إبداعية.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Fonts & icons (Cairo is the only text font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400..900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         ACCESSIBILITY: skip link
+    ========================================= -->
+    <a href="#main" class="skip-link" data-ar="الانتقال إلى المحتوى" data-en="Skip to content">الانتقال إلى المحتوى</a>
+
+
+    <!-- =========================================
+         PAGE LOADER
+         Shown on first load, page navigation and language switch
+    ========================================= -->
+    <div class="page-loader" id="page-loader" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-brand">SAMIR EL-HOSARY</div>
+            <div class="loader-line"><span></span></div>
+            <div class="loader-text" data-ar="جاري التحميل..." data-en="LOADING...">جاري التحميل...</div>
+            <div class="loader-percent" id="loader-percent">0%</div>
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         CUSTOM CURSOR (desktop only)
+    ========================================= -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-follower" aria-hidden="true"></div>
+
+
+    <!-- =========================================
+         HEADER & NAVIGATION
+         Desktop navigation + mobile drawer menu
+    ========================================= -->
+    <header class="main-header enter" id="main-header">
+
+        <a href="index.html" class="logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">SAMIR EL-HOSARY</a>
+
+        <nav class="main-nav" id="main-nav" data-aria-label-ar="التنقل الرئيسي" data-aria-label-en="Main navigation" aria-label="التنقل الرئيسي">
+            <a href="index.html" class="nav-link"
+               data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="work.html" class="nav-link"
+               data-ar="الأعمال" data-en="Work">الأعمال</a>
+            <a href="about.html" class="nav-link"
+               data-ar="عني" data-en="About">عني</a>
+            <a href="contact.html" class="nav-link active" aria-current="page"
+               data-ar="تواصل" data-en="Contact">تواصل</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <button type="button" class="lang-switch" id="lang-switch" aria-label="Switch to English">EN</button>
+
+            <button type="button" class="menu-toggle" id="menu-toggle"
+                    aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
+
+    <main id="main">
+
+        <!-- =========================================
+             CONTACT HERO
+             Page heading
+        ========================================= -->
+        <section class="contact-hero">
+
+            <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+
+            <div class="container contact-hero-inner">
+
+                <div class="contact-heading">
+
+                    <div class="section-kicker enter" style="--i:1">
+                        <span class="kicker-line" aria-hidden="true"></span>
+                        <span data-ar="تواصل مباشر" data-en="GET IN TOUCH">تواصل مباشر</span>
+                    </div>
+
+                    <h1 class="enter" style="--i:2">
+                        <span data-ar="لنصنع شيئًا" data-en="LET&#x27;S CREATE SOMETHING">لنصنع شيئًا</span>
+                        <em data-ar="يستحق المشاهدة." data-en="WORTH WATCHING.">يستحق المشاهدة.</em>
+                    </h1>
+
+                    <p class="enter" style="--i:3"
+                       data-ar="للإعلانات، الأفلام المخصصة للعلامات التجارية، الريلز والإنتاجات الإبداعية — تواصل معي وسنبدأ فورًا." data-en="For commercials, branded films, reels and creative productions, get in touch and let&#x27;s start.">للإعلانات، الأفلام المخصصة للعلامات التجارية، الريلز والإنتاجات الإبداعية — تواصل معي وسنبدأ فورًا.</p>
+
+                </div>
+
+                <div class="contact-number" aria-hidden="true">03</div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             DIRECT CONTACT CARDS
+             Email, WhatsApp and studio location
+        ========================================= -->
+        <section class="direct-info-section">
+            <div class="container">
+                <div class="info-cards-grid">
+
+                    <article class="info-card reveal">
+                        <div class="card-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></div>
+                        <div class="card-details">
+                            <small data-ar="البريد الإلكتروني المباشر" data-en="DIRECT EMAIL">البريد الإلكتروني المباشر</small>
+                            <strong dir="ltr">contact@samirelhosary.com</strong>
+                        </div>
+                        <button type="button" class="copy-btn" data-copy="contact@samirelhosary.com"
+                                data-aria-label-ar="نسخ البريد الإلكتروني" data-aria-label-en="Copy email address" aria-label="نسخ البريد الإلكتروني"
+                                data-title-ar="نسخ البريد" data-title-en="Copy email" title="نسخ البريد">
+                            <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                        </button>
+                    </article>
+
+                    <article class="info-card reveal" style="--i:1">
+                        <div class="card-icon whatsapp-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="card-details">
+                            <small data-ar="الهاتف / واتساب المباشر" data-en="DIRECT PHONE / WHATSAPP">الهاتف / واتساب المباشر</small>
+                            <strong dir="ltr">+201028924138</strong>
+                        </div>
+                        <a href="https://wa.me/201028924138" target="_blank" rel="noopener noreferrer" class="card-action-btn"
+                           data-aria-label-ar="فتح واتساب" data-aria-label-en="Open WhatsApp" aria-label="فتح واتساب"
+                           data-title-ar="فتح واتساب" data-title-en="Open WhatsApp" title="فتح واتساب">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="info-card reveal" style="--i:2">
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="card-details">
+                            <small data-ar="مقر الاستوديو الرئيسي" data-en="STUDIO BASE">مقر الاستوديو الرئيسي</small>
+                        <strong data-ar="الحسينية، الشرقية — متاح محليًا" data-en="El Husseiniya, Sharqia — Available Locally">الحسينية، الشرقية — متاح محليًا</strong>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             PROJECT INQUIRY FORM
+             Validates the fields and opens a ready WhatsApp message
+        ========================================= -->
+        <section class="contact-form-section" id="inquiry">
+            <div class="container">
+
+                <div class="section-header text-center reveal">
+                    <div class="section-kicker justify-center">
+                        <span class="kicker-line" aria-hidden="true"></span>
+                        <span data-ar="استمارة بدء المشروع" data-en="PROJECT INQUIRY FORM">استمارة بدء المشروع</span>
+                        <span class="kicker-line" aria-hidden="true"></span>
+                    </div>
+                    <h2 class="form-section-title" data-ar="شاركنا تفاصيل رؤيتك" data-en="SHARE YOUR VISION">شاركنا تفاصيل رؤيتك</h2>
+                    <p class="form-section-desc" data-ar="قم بتعبئة البيانات وسيقوم النظام بإنشاء رسالة واتساب منظمة ومجهزة للإرسال." data-en="Fill out the details below and the system will generate a structured WhatsApp message ready to send.">قم بتعبئة البيانات وسيقوم النظام بإنشاء رسالة واتساب منظمة ومجهزة للإرسال.</p>
+                </div>
+
+                <div class="form-wrapper reveal">
+
+                    <div class="form-header-bar">
+                        <div class="bar-title">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            <span data-ar="طلب مشروع جديد" data-en="NEW PROJECT REQUEST">طلب مشروع جديد</span>
+                        </div>
+                        <div class="bar-step" aria-hidden="true">STEP 01/01</div>
+                    </div>
+
+                    <form id="contact-form" class="modern-form" data-whatsapp="201028924138" novalidate>
+
+                        <div class="form-grid">
+
+                            <div class="field-group">
+                                <label for="full-name"><span data-ar="الاسم بالكامل" data-en="FULL NAME">الاسم بالكامل</span><span class="required-star" aria-hidden="true">*</span></label>
+                                <div class="input-inner">
+                                    <i class="field-icon fa-regular fa-user" aria-hidden="true"></i>
+                                    <input id="full-name" name="full-name" type="text" autocomplete="name" minlength="2" required aria-describedby="full-name-error"
+                                        data-placeholder-ar="اكتب اسمك الكريم..." data-placeholder-en="Enter your full name..." placeholder="اكتب اسمك الكريم...">
+                                </div>
+                                <small class="field-error" id="full-name-error" data-error-for="full-name" role="alert"></small>
+                            </div>
+
+
+                            <div class="field-group">
+                                <label for="phone"><span data-ar="رقم الموبايل / الواتساب" data-en="MOBILE / WHATSAPP">رقم الموبايل / الواتساب</span><span class="required-star" aria-hidden="true">*</span></label>
+                                <div class="input-inner">
+                                    <i class="field-icon fa-solid fa-phone" aria-hidden="true"></i>
+                                    <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" dir="auto" required aria-describedby="phone-error"
+                                        data-placeholder-ar="+201028924138" data-placeholder-en="+201028924138" placeholder="+201028924138">
+                                </div>
+                                <small class="field-error" id="phone-error" data-error-for="phone" role="alert"></small>
+                            </div>
+
+
+                            <div class="field-group">
+                                <label for="company"><span data-ar="الشركة / الوكالة" data-en="COMPANY / AGENCY">الشركة / الوكالة</span><span class="optional-tag" data-ar="(اختياري)" data-en="(Optional)">(اختياري)</span></label>
+                                <div class="input-inner">
+                                    <i class="field-icon fa-regular fa-building" aria-hidden="true"></i>
+                                    <input id="company" name="company" type="text" autocomplete="organization"
+                                        data-placeholder-ar="اسم الشركة، الوكالة أو العلامة التجارية" data-placeholder-en="Company or agency name" placeholder="اسم الشركة، الوكالة أو العلامة التجارية">
+                                </div>
+                            </div>
+
+                            <!-- Project type (accessible custom select) -->
+                            <div class="field-group">
+                                <label id="project-type-label" for="dropdown-trigger"><span data-ar="نوع المشروع المطلوب" data-en="PROJECT TYPE">نوع المشروع المطلوب</span><span class="required-star" aria-hidden="true">*</span></label>
+
+                                <div class="custom-dropdown" id="custom-dropdown">
+                                    <input type="hidden" id="project-type-input" name="projectType">
+
+                                    <button type="button" class="dropdown-trigger" id="dropdown-trigger"
+                                            aria-haspopup="listbox" aria-expanded="false" aria-controls="dropdown-menu"
+                                            aria-describedby="project-type-error">
+                                        <span class="trigger-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
+                                        <span class="trigger-text" id="trigger-text" data-ar="اضغط لاختيار نوع المشروع..." data-en="Click to select project type...">اضغط لاختيار نوع المشروع...</span>
+                                        <span class="trigger-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" id="dropdown-menu" role="listbox" aria-labelledby="project-type-label">
+                                    <li class="dropdown-item" role="option" tabindex="-1" aria-selected="false"
+                                        data-value="commercial" data-label-ar="فيلم إعلاني تجاري" data-label-en="Commercial Film">
+                                        <i class="fa-solid fa-film" aria-hidden="true"></i>
+                                        <span data-ar="فيلم إعلاني تجاري" data-en="Commercial Film">فيلم إعلاني تجاري</span>
+                                    </li>
+                                    <li class="dropdown-item" role="option" tabindex="-1" aria-selected="false"
+                                        data-value="branded" data-label-ar="محتوى للعلامة التجارية / ميني دوك" data-label-en="Branded Content / Mini-Doc">
+                                        <i class="fa-solid fa-photo-film" aria-hidden="true"></i>
+                                        <span data-ar="محتوى للعلامة التجارية / ميني دوك" data-en="Branded Content / Mini-Doc">محتوى للعلامة التجارية / ميني دوك</span>
+                                    </li>
+                                    <li class="dropdown-item" role="option" tabindex="-1" aria-selected="false"
+                                        data-value="reels" data-label-ar="حملة ريلز حركية عالية التفاعل" data-label-en="Kinetic Reels Campaign">
+                                        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                                        <span data-ar="حملة ريلز حركية عالية التفاعل" data-en="Kinetic Reels Campaign">حملة ريلز حركية عالية التفاعل</span>
+                                    </li>
+                                    <li class="dropdown-item" role="option" tabindex="-1" aria-selected="false"
+                                        data-value="music" data-label-ar="فيديو موسيقي / ميوزيك فيديو" data-label-en="Music Video">
+                                        <i class="fa-solid fa-music" aria-hidden="true"></i>
+                                        <span data-ar="فيديو موسيقي / ميوزيك فيديو" data-en="Music Video">فيديو موسيقي / ميوزيك فيديو</span>
+                                    </li>
+                                    <li class="dropdown-item" role="option" tabindex="-1" aria-selected="false"
+                                        data-value="other" data-label-ar="تعاون إبداعي آخر" data-label-en="Other Creative Collaboration">
+                                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                                        <span data-ar="تعاون إبداعي آخر" data-en="Other Creative Collaboration">تعاون إبداعي آخر</span>
+                                    </li>
+                                    </ul>
+                                </div>
+
+                                <small class="field-error" id="project-type-error" data-error-for="project-type" role="alert"></small>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="field-group full-width">
+                                <label for="details"><span data-ar="تفاصيل المشروع والرؤية الإبداعية" data-en="PROJECT DETAILS &amp; VISION">تفاصيل المشروع والرؤية الإبداعية</span><span class="required-star" aria-hidden="true">*</span></label>
+                                <div class="input-inner textarea-inner">
+                                    <i class="field-icon fa-regular fa-pen-to-square" aria-hidden="true"></i>
+                                    <textarea id="details" name="details" rows="6" required minlength="10" aria-describedby="details-error"
+                                        data-placeholder-ar="اكتب هنا الفكرة العامة، الهدف من المشروع، المواعيد المقترحة أو أي ملاحظات أخرى..." data-placeholder-en="Describe your idea, goal, timeline or specific requirements..."
+                                        placeholder="اكتب هنا الفكرة العامة، الهدف من المشروع، المواعيد المقترحة أو أي ملاحظات أخرى..."></textarea>
+                                </div>
+                                <div class="textarea-meta">
+                                    <small data-ar="كلما كانت التفاصيل أوضح، كانت بداية المشروع أفضل." data-en="The clearer the details, the better the starting point.">كلما كانت التفاصيل أوضح، كانت بداية المشروع أفضل.</small>
+                                    <span id="character-count" dir="ltr">0 / 1200</span>
+                                </div>
+                                <small class="field-error" id="details-error" data-error-for="details" role="alert"></small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="submit-button" id="submit-button">
+                                <span class="btn-text" data-ar="إرسال الطلب عبر واتساب" data-en="SEND INQUIRY VIA WHATSAPP">إرسال الطلب عبر واتساب</span>
+                                <span class="btn-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                            </button>
+                            <p class="form-disclaimer" data-ar="سيقوم النظام بفتح واتساب تلقائيًا مع تجهيز الرسالة بشكل منظم." data-en="WhatsApp will open automatically with your message already structured.">سيقوم النظام بفتح واتساب تلقائيًا مع تجهيز الرسالة بشكل منظم.</p>
+                        </div>
+
+                        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             FINAL CTA
+             Closing line and social links
+        ========================================= -->
+        <section class="final-cta">
+            <div class="container final-cta-inner reveal">
+                <span class="final-index" aria-hidden="true">04</span>
+                <h2 data-ar="كل مشروع عظيم يبدأ بمحادثة بسيطة." data-en="Every great project starts with a conversation.">كل مشروع عظيم يبدأ بمحادثة بسيطة.</h2>
+                <div class="social-links-bar">
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        Instagram
+                    </a>
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                        Facebook
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                        YouTube
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         Brand, quick links, social links and copyright
+    ========================================= -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">
+                        <span class="footer-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                    </a>
+
+                    <p class="footer-description"
+                       data-ar="مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة." data-en="Director and filmmaker creating visual work that brings together ideas, stories, and cinematic vision.">مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة.</p>
+                </div>
+
+                <!-- Quick links -->
+                <nav class="footer-navigation" data-aria-label-ar="روابط التذييل" data-aria-label-en="Footer navigation" aria-label="روابط التذييل">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul>
+                    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="work.html" data-ar="الأعمال" data-en="Work">الأعمال</a></li>
+                    <li><a href="about.html" data-ar="عني" data-en="About Me">عني</a></li>
+                    <li><a href="index.html#partners" data-ar="أهم العملاء" data-en="Clients">أهم العملاء</a></li>
+                    <li><a href="contact.html" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+                    </ul>
+                </nav>
+
+                  <!-- Social -->
+                <div class="footer-social">
+                    <h3 data-ar="تابعني" data-en="Follow Me">تابعني</h3>
+                    <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" class="footer-social-link" aria-label="Facebook"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" class="footer-social-link" aria-label="Instagram"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" class="footer-social-link" aria-label="YouTube"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@samir.films10?_r=1&_t=ZS-9AIWwJCJ9NN" class="footer-social-link" aria-label="TikTok"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <div class="footer-copyright">
+                    <span class="copyright-symbol">©</span>
+                    <span data-ar="جميع الحقوق محفوظة" data-en="All Rights Reserved">جميع الحقوق محفوظة</span>
+                    <span class="copyright-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                </div>
+
+                <div class="footer-developer">
+                    <span>Designed and programmed by :</span>
+                    <a href="https://www.facebook.com/hema.essam.20" target="_blank" rel="noopener noreferrer" class="developer-link">Eng. Ibrahim Essam Shaalan</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Toast notification (copy confirmation) -->
+    <div id="toast" class="toast-notification" role="status" aria-live="polite"></div>
+
+
+    <script defer src="js/core.js"></script>
+    <script defer src="js/contact.js"></script>
+
+</body>
+</html>

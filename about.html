@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#090909">
+
+    <!-- Applies the saved language and enables the loader before first paint -->
+    <script>
+        (function () {
+            var html = document.documentElement, lang = "ar";
+            try { if (localStorage.getItem("samir_language") === "en") lang = "en"; } catch (e) {}
+            html.lang = lang;
+            html.dir = lang === "ar" ? "rtl" : "ltr";
+            html.classList.add("js", "is-loading");
+        })();
+    </script>
+
+    <!-- SEO -->
+    <title data-ar="عن سمير الحصري | SAMIR EL-HOSARY" data-en="About Samir El-Hosary | SAMIR EL-HOSARY">عن سمير الحصري | SAMIR EL-HOSARY</title>
+    <meta name="description" content="سمير الحصري، مخرج وصانع أفلام. إعلانات، محتوى للعلامات التجارية وسرد بصري سينمائي." data-content-ar="سمير الحصري، مخرج وصانع أفلام. إعلانات، محتوى للعلامات التجارية وسرد بصري سينمائي." data-content-en="Samir El-Hosary, director and filmmaker. Commercials, branded content and cinematic visual storytelling.">
+    <meta name="author" content="Samir El-Hosary">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SAMIR EL-HOSARY">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:title" content="عن سمير الحصري | SAMIR EL-HOSARY">
+    <meta property="og:description" content="سمير الحصري، مخرج وصانع أفلام. إعلانات، محتوى للعلامات التجارية وسرد بصري سينمائي.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Fonts & icons (Cairo is the only text font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400..900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preload" as="image" href="images/samir-about.webp">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         ACCESSIBILITY: skip link
+    ========================================= -->
+    <a href="#main" class="skip-link" data-ar="الانتقال إلى المحتوى" data-en="Skip to content">الانتقال إلى المحتوى</a>
+
+
+    <!-- =========================================
+         PAGE LOADER
+         Shown on first load, page navigation and language switch
+    ========================================= -->
+    <div class="page-loader" id="page-loader" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-brand">SAMIR EL-HOSARY</div>
+            <div class="loader-line"><span></span></div>
+            <div class="loader-text" data-ar="جاري التحميل..." data-en="LOADING...">جاري التحميل...</div>
+            <div class="loader-percent" id="loader-percent">0%</div>
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         CUSTOM CURSOR (desktop only)
+    ========================================= -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-follower" aria-hidden="true"></div>
+
+
+    <!-- =========================================
+         HEADER & NAVIGATION
+         Desktop navigation + mobile drawer menu
+    ========================================= -->
+    <header class="main-header enter" id="main-header">
+
+        <a href="index.html" class="logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">SAMIR EL-HOSARY</a>
+
+        <nav class="main-nav" id="main-nav" data-aria-label-ar="التنقل الرئيسي" data-aria-label-en="Main navigation" aria-label="التنقل الرئيسي">
+            <a href="index.html" class="nav-link"
+               data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="work.html" class="nav-link"
+               data-ar="الأعمال" data-en="Work">الأعمال</a>
+            <a href="about.html" class="nav-link active" aria-current="page"
+               data-ar="عني" data-en="About">عني</a>
+            <a href="contact.html" class="nav-link"
+               data-ar="تواصل" data-en="Contact">تواصل</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <button type="button" class="lang-switch" id="lang-switch" aria-label="Switch to English">EN</button>
+
+            <button type="button" class="menu-toggle" id="menu-toggle"
+                    aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
+
+    <main id="main">
+
+        <!-- =========================================
+             ABOUT HERO
+             Introduction, portrait and call to action
+        ========================================= -->
+        <section class="about-hero">
+
+            <div class="about-hero-bg" aria-hidden="true"></div>
+            <div class="about-hero-overlay" aria-hidden="true"></div>
+
+            <div class="about-hero-inner">
+
+                <div class="about-hero-copy">
+
+                    <div class="section-kicker enter" style="--i:1">
+                        <span class="kicker-line" aria-hidden="true"></span>
+                        <span data-ar="مخرج وصانع أفلام" data-en="DIRECTOR &amp; FILMMAKER">مخرج وصانع أفلام</span>
+                    </div>
+
+                    <h1 class="about-title enter" style="--i:2">
+                        <span class="about-title-small" data-ar="عن" data-en="ABOUT">عن</span>
+                        <span class="about-title-main" data-ar="سمير" data-en="SAMIR">سمير</span>
+                    </h1>
+
+                    <p class="about-intro enter" style="--i:3"
+                       data-ar="أنا سمير الحصري، مخرج وصانع أفلام أركز على الإعلانات والمحتوى المخصص للعلامات التجارية والسرد البصري. أجمع بين الإخراج والتصوير والمونتاج والتطوير البصري لصناعة أفلام واضحة، مؤثرة ومقصودة بصريًا." data-en="I&#x27;m Samir El-Hosary, a director and filmmaker focused on commercials, branded content and visual storytelling. My work combines directing, cinematography, editing and visual development to build films that communicate clearly and feel visually intentional.">أنا سمير الحصري، مخرج وصانع أفلام أركز على الإعلانات والمحتوى المخصص للعلامات التجارية والسرد البصري. أجمع بين الإخراج والتصوير والمونتاج والتطوير البصري لصناعة أفلام واضحة، مؤثرة ومقصودة بصريًا.</p>
+
+                    <a href="contact.html" class="about-cta enter" style="--i:4">
+                        <span data-ar="تواصل معي" data-en="CONTACT ME">تواصل معي</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+
+                <div class="about-hero-image enter" style="--i:3">
+                    <div class="image-frame">
+                        <div class="image-number" aria-hidden="true">01</div>
+                        <img src="images/samir-about.webp" width="1093" height="1400" fetchpriority="high" decoding="async"
+                             alt="سمير الحصري" data-alt-ar="سمير الحصري" data-alt-en="Samir El-Hosary">
+                        <div class="image-caption">
+                            <span data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                            <span data-ar="مخرج وصانع أفلام" data-en="DIRECTOR &amp; FILMMAKER">مخرج وصانع أفلام</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="#expertise" class="hero-scroll enter" style="--i:5">
+                <span data-ar="اكتشف القصة" data-en="DISCOVER THE STORY">اكتشف القصة</span>
+                <span class="scroll-line" aria-hidden="true"></span>
+            </a>
+
+        </section>
+
+
+        <!-- =========================================
+             EXPERTISE
+             Six areas of work shown as cards
+        ========================================= -->
+        <section class="expertise-section section-space" id="expertise">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-kicker">
+                        <span class="kicker-line" aria-hidden="true"></span>
+                        <span data-ar="مجالات الخبرة" data-en="EXPERTISE">مجالات الخبرة</span>
+                    </div>
+                    <h2 data-ar="أصنع الفكرة حتى تصبح تجربة بصرية." data-en="I shape ideas into intentional visual experiences.">أصنع الفكرة حتى تصبح تجربة بصرية.</h2>
+                </div>
+
+                <div class="expertise-grid">
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">01</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-film"></i></div>
+                        <h3 data-ar="الإخراج" data-en="DIRECTING">الإخراج</h3>
+                        <p data-ar="قيادة الرؤية الإبداعية من الفكرة والمعالجة حتى النسخة النهائية، مع توجيه حركة الكاميرا وأداء المواهب." data-en="Leading the creative vision from concept treatment to final cut, directing camera movement, and guiding talent performance.">قيادة الرؤية الإبداعية من الفكرة والمعالجة حتى النسخة النهائية، مع توجيه حركة الكاميرا وأداء المواهب.</p>
+                    </article>
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">02</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-camera"></i></div>
+                        <h3 data-ar="التصوير السينمائي" data-en="CINEMATOGRAPHY">التصوير السينمائي</h3>
+                        <p data-ar="بناء الإضاءة الدرامية، اختيار العدسات السينمائية، وصناعة تكوينات دقيقة باستخدام كاميرات السينما." data-en="Sculpting dramatic lighting, selecting anamorphic lens packages, and framing disciplined compositions with cinema cameras.">بناء الإضاءة الدرامية، اختيار العدسات السينمائية، وصناعة تكوينات دقيقة باستخدام كاميرات السينما.</p>
+                    </article>
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">03</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
+                        <h3 data-ar="السرد البصري" data-en="VISUAL STORYTELLING">السرد البصري</h3>
+                        <p data-ar="صياغة مسارات بصرية تحمل إحساسًا واضحًا وتربط قيمة العلامة التجارية بصور تبقى في الذاكرة." data-en="Crafting cinematic arcs that resonate emotionally and anchor brand prestige in memorable imagery.">صياغة مسارات بصرية تحمل إحساسًا واضحًا وتربط قيمة العلامة التجارية بصور تبقى في الذاكرة.</p>
+                    </article>
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">04</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3 data-ar="التطوير الإبداعي" data-en="CREATIVE DEVELOPMENT">التطوير الإبداعي</h3>
+                        <p data-ar="تطوير معالجات المخرج، لوحات الإلهام البصرية، القصص المصورة، والهوية الجمالية للمشروع." data-en="Developing director&#x27;s treatments, curated visual moodboards, storyboard narratives, and aesthetic bibles.">تطوير معالجات المخرج، لوحات الإلهام البصرية، القصص المصورة، والهوية الجمالية للمشروع.</p>
+                    </article>
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">05</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-scissors"></i></div>
+                        <h3 data-ar="المونتاج" data-en="EDITING">المونتاج</h3>
+                        <p data-ar="التحكم في الإيقاع والزمن والـ Match Cut وبناء مونتاج متزامن مع تصميم الصوت والموسيقى الأصلية." data-en="Mastering temporal rhythm, match cutting, and tempo-locked pacing synchronized to original sound design.">التحكم في الإيقاع والزمن والـ Match Cut وبناء مونتاج متزامن مع تصميم الصوت والموسيقى الأصلية.</p>
+                    </article>
+                    <article class="expertise-card reveal">
+                        <span class="card-index" aria-hidden="true">06</span>
+                        <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-clapperboard"></i></div>
+                        <h3 data-ar="الإنتاج التجاري" data-en="COMMERCIAL PRODUCTION">الإنتاج التجاري</h3>
+                        <p data-ar="تنسيق فرق إنتاج عالية الكفاءة في مواقع التصوير للوصول إلى أعلى المعايير البصرية ضمن الجداول التجارية." data-en="Coordinating high-efficiency production crews on set to meet the highest visual standards and commercial timelines.">تنسيق فرق إنتاج عالية الكفاءة في مواقع التصوير للوصول إلى أعلى المعايير البصرية ضمن الجداول التجارية.</p>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             STATS
+             Animated counters
+        ========================================= -->
+        <section class="stats-section">
+
+            <div class="stats-noise" aria-hidden="true"></div>
+
+            <div class="container">
+
+                <h2 class="stats-heading reveal" data-ar="الأرقام تحكي جزءًا من الرحلة" data-en="THE NUMBERS TELL PART OF THE STORY">الأرقام تحكي جزءًا من الرحلة</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-item reveal">
+                        <div class="stat-number"><span class="counter" data-target="8">8</span><span>+</span></div>
+                        <div class="stat-label" data-ar="سنوات من الخبرة في الإخراج" data-en="YEARS DIRECTING EXPERIENCE">سنوات من الخبرة في الإخراج</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-number"><span class="counter" data-target="65">65</span><span>+</span></div>
+                        <div class="stat-label" data-ar="مشروعًا تجاريًا ومحتوى للعلامات التجارية" data-en="COMMERCIAL &amp; BRANDED PROJECTS">مشروعًا تجاريًا ومحتوى للعلامات التجارية</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-number"><span class="counter" data-target="40">40</span><span>+</span></div>
+                        <div class="stat-label" data-ar="علامة تجارية ووكالة إبداعية" data-en="BRANDS &amp; CREATIVE AGENCIES">علامة تجارية ووكالة إبداعية</div>
+                    </div>
+                    <div class="stat-item reveal">
+                        <div class="stat-number"><span class="counter" data-target="90">90</span><span>+</span></div>
+                        <div class="stat-label" data-ar="حملة بصرية عالية التأثير" data-en="HIGH-IMPACT VISUAL CAMPAIGNS">حملة بصرية عالية التأثير</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CLOSING STATEMENT
+             Final message and link to the contact page
+        ========================================= -->
+        <section class="closing-section section-space">
+            <div class="container">
+
+                <div class="closing-card reveal">
+
+                    <div class="closing-topline" aria-hidden="true">
+                        <span>02</span>
+                        <span data-ar="عن المخرج" data-en="THE DIRECTOR">عن المخرج</span>
+                    </div>
+
+                    <h2 data-ar="الصورة ليست مجرد شكل." data-en="An image is never just an image.">الصورة ليست مجرد شكل.</h2>
+
+                    <p data-ar="كل إطار قرار، وكل حركة لها معنى، وكل قصة تستحق أن تُرى بطريقة تجعلها تبقى." data-en="Every frame is a decision, every movement has a purpose, and every story deserves to be seen in a way that stays.">كل إطار قرار، وكل حركة لها معنى، وكل قصة تستحق أن تُرى بطريقة تجعلها تبقى.</p>
+
+                    <a href="contact.html" class="closing-link">
+                        <span data-ar="ابدأ مشروعًا" data-en="START A PROJECT">ابدأ مشروعًا</span>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         Brand, quick links, social links and copyright
+    ========================================= -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" data-aria-label-ar="سمير الحصري - الصفحة الرئيسية" data-aria-label-en="Samir El-Hosary - Home">
+                        <span class="footer-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                    </a>
+
+                    <p class="footer-description"
+                       data-ar="مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة." data-en="Director and filmmaker creating visual work that brings together ideas, stories, and cinematic vision.">مخرج وصانع أفلام أقدّم أعمالًا بصرية تجمع بين الفكرة، القصة، والصورة.</p>
+                </div>
+
+                <!-- Quick links -->
+                <nav class="footer-navigation" data-aria-label-ar="روابط التذييل" data-aria-label-en="Footer navigation" aria-label="روابط التذييل">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul>
+                    <li><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="work.html" data-ar="الأعمال" data-en="Work">الأعمال</a></li>
+                    <li><a href="about.html" data-ar="عني" data-en="About Me">عني</a></li>
+                    <li><a href="index.html#partners" data-ar="أهم العملاء" data-en="Clients">أهم العملاء</a></li>
+                    <li><a href="contact.html" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+                    </ul>
+                </nav>
+
+                 <!-- Social -->
+                <div class="footer-social">
+                    <h3 data-ar="تابعني" data-en="Follow Me">تابعني</h3>
+                    <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/18dDtKvpVj/?mibextid=wwXIfr" class="footer-social-link" aria-label="Facebook"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/samir.films10/?hl=ar" class="footer-social-link" aria-label="Instagram"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/channel/UCHRnPz-XDiSna4kp3eigyGw" class="footer-social-link" aria-label="YouTube"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@samir.films10?_r=1&_t=ZS-9AIWwJCJ9NN" class="footer-social-link" aria-label="TikTok"
+                       target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <div class="footer-copyright">
+                    <span class="copyright-symbol">©</span>
+                    <span data-ar="جميع الحقوق محفوظة" data-en="All Rights Reserved">جميع الحقوق محفوظة</span>
+                    <span class="copyright-name" data-ar="سمير الحصري" data-en="SAMIR EL-HOSARY">سمير الحصري</span>
+                </div>
+
+                <div class="footer-developer">
+                    <span>Designed and programmed by :</span>
+                    <a href="https://www.facebook.com/hema.essam.20" target="_blank" rel="noopener noreferrer" class="developer-link">Eng. Ibrahim Essam Shaalan</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script defer src="js/core.js"></script>
+    <script defer src="js/about.js"></script>
+
+</body>
+</html>
